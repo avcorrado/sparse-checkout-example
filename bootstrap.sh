@@ -30,6 +30,7 @@ while true; do
     fi
 done
 
+
 FOLDERS=$(echo "${optionMap[$opt]}" | grep -o "\"folders\": \"[^\"]*\"" | cut -d'"' -f4)
 
 echo "Initializing sparse checkout"
