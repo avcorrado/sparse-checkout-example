@@ -1,6 +1,6 @@
 # Sparse-Checkout Example Repo
 
-This repository is an example of a file layout that works well with the sparse-checkout file.
+This repository is an example of a file layout that works well with the sparse-checkout file. Forked from github blog, this adds extra features such as bash selection and prompts.
 
 ## When cloning this repository
 
