@@ -6,32 +6,26 @@ die() {
 	exit 1
 }
 
-options=(
-    '{"name": "client/android", "folders": "client/android"}'
-    '{"name": "service/common service/identity", "folders": "service/common service/identity"}'
-    '{"name": "service", "folders": "service"}'
-    '{"name": "web/browser", "folders": "web/browser"}'
+declare -a options=(
+    "client/android"
+    "service/common service/identity"
+    "service"
+    "web/browser"
 )
 
-declare -A optionMap=()
-for ((i=0; i<${#options[@]}; i++)); do
-    name=$(echo "${options[i]}" | grep -o "\"name\": \"[^\"]*\"" | cut -d'"' -f4)
-    optionMap["$((i+1))"]="${options[i]}"
-    echo "$((i+1))) $name"
+echo "Select a folder to sparse checkout:"
+for i in "${!options[@]}"; do
+    printf "%s) %s\n" "$((i+1))" "${options[$i]}"
 done
-
 while true; do
-    read -n1 -rp $'\nSelect a folder to sparse checkout: ' opt
-    echo
-    if [[ -z "${optionMap[$opt]}" ]]; then
-        echo "Invalid option"
-    else
+    read -rp "Enter selection: " selection
+    if [[ $selection =~ ^[0-9]+$ ]] && (( selection >= 1 && selection <= ${#options[@]} )); then
+        FOLDERS="${options[$((selection-1))]}"
         break
+    else
+        echo "Invalid selection. Try again."
     fi
 done
-
-
-FOLDERS=$(echo "${optionMap[$opt]}" | grep -o "\"folders\": \"[^\"]*\"" | cut -d'"' -f4)
 
 echo "Initializing sparse checkout"
 git sparse-checkout init --cone
