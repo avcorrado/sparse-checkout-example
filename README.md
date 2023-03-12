@@ -1,22 +1,22 @@
-# Sparse-Checkout Example Repo
+# This is an example monorepo with modern tooling
 
-This repository is an example of a file layout that works well with the sparse-checkout file. Forked from github blog, this adds extra features such as bash selection and prompts.
+All services, clients, servers are located in this repository. It servers as a collection of all code. It is a modern monorepo structure, with git sparse methodology. This means; all code is visible, all progress is visible, all dependencies across projects are easily utilised and shared.
 
-## When cloning this repository
+Most importantly it maintains git sparse methods to ensure only the project you want is checked out after cloning, no need to see everything!
 
-When cloning this repository make sure to use a shallow clone.
+## Once you have cloned, now it's time to checkout sparesly
 
-`git clone --depth 1 --sparse git@github.com:avcorrado/sparse-checkout-example.git`
+You should run the `setup.sh` command, it will present options in the shell for which directory to sparesly checkout.
 
-This makes sure that only the top level of the repository is cloned for faster cloning.
+If you want to add new directories to handle sparesly you can modify `folders.cfg` array`
 
-## git sparse-checkout commands
+Each option will launch the `git sparse-checkout set` command to show only the directories needed for those teams.
 
-To get the full file and folders You can run the `checkout.sh` command and it will present options in the shell for which to folder to sparesly checkout.
+If you want to revert to see all folders, select `*All` when the menu appears.
 
-If you want to add new folders you can modify `checkout.sh` array of `"options"`.
+## A note on "Codeowners"
 
-Each will launch the `git sparse-checkout set` command to show only the directories needed for those teams.
+We use the concept and method of Codeowners in git and this repository. This means within the file "CODEOWNERS" in the root we can specifically target which developers can edit files/folders/projects of this repository, allowing for safe pull requests.
 
 ## Attribution
 
