@@ -8,7 +8,7 @@ Most importantly it maintains git sparse methods to ensure only the project you 
 
 You should run the `setup.sh` command, it will present options in the shell for which directory to sparesly checkout.
 
-If you want to add new directories to handle sparesly you can modify `folders.cfg` array`
+If you want to add new directories to handle sparesly you can modify `setup.cfg` array of `options()`. Do not edit `persist()` these are files/folders that should remain in any sparse-checkout.
 
 Each option will launch the `git sparse-checkout set` command to show only the directories needed for those teams.
 
